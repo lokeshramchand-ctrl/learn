@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from accounts.models import User  # Import your custom User model
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,3 +22,5 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
+
+
