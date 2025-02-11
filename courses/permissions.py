@@ -1,4 +1,3 @@
-# course/permissions.py
 from rest_framework.permissions import BasePermission
 
 class IsAdmin(BasePermission):
@@ -14,8 +13,8 @@ class IsInstructor(BasePermission):
     Custom permission to allow only instructors to access certain views.
     """
     def has_permission(self, request, view):
-        # Check if the user has 'instructor' role (adjust based on your model)
-        return request.user.role == 'instructor'
+        # Ensure the role check matches the case used in your model ('Instructor' instead of 'instructor')
+        return request.user.role == 'Instructor'
 
 
 class IsStudent(BasePermission):
@@ -23,5 +22,5 @@ class IsStudent(BasePermission):
     Custom permission to allow only students to access certain views.
     """
     def has_permission(self, request, view):
-        # Check if the user has 'student' role (adjust based on your model)
-        return request.user.role == 'student'
+        # Ensure the role check matches the case used in your model ('Student' instead of 'student')
+        return request.user.role == 'Student'

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include  # Fixed import of 'include'
 from accounts.views import RegisterView, LoginView
+
 from courses import urls as courses_urls  # Correct the import alias for courses app
 from courses.views import CourseCreateView
 

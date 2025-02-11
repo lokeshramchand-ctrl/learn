@@ -1,10 +1,10 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import Course, Module, Enrollment, Assignment, Submission
-from .serializers import CourseSerializer, ModuleSerializer, EnrollmentSerializer, AssignmentSerializer, SubmissionSerializer
+from .models import Course, Enrollment, Assignment, Submission
+from .serializers import CourseSerializer, EnrollmentSerializer, AssignmentSerializer, SubmissionSerializer
 from .permissions import IsInstructor, IsStudent, IsAdmin
 from django.views.generic import CreateView
-from .models import Course
+from django.contrib.auth.models import Permission  # If needed for permission checks
 
 class CourseCreateView(CreateView):
     model = Course
@@ -14,7 +14,7 @@ class CourseCreateView(CreateView):
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAdmin , IsInstructor]  # Only admins or instructors can create courses
+    permission_classes = [IsAdmin, IsInstructor]  # Only admins or instructors can create courses
 
     def perform_create(self, serializer):
         # Assign the instructor as the user who created the course
@@ -45,7 +45,7 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
 class AssignmentViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
-    permission_classes = [IsAdmin ,IsInstructor]  # Only admins or instructors can create assignments
+    permission_classes = [IsAdmin, IsInstructor]  # Only admins or instructors can create assignments
 
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:
