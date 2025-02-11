@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'accounts',
     'courses',
     'django.contrib.admin',
+    'rest_framework.authtoken',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
