@@ -27,7 +27,6 @@ class Module(models.Model):
 
     def __str__(self):
         return self.title
-
 # Enrollment Model
 class Enrollment(models.Model):
     user = models.ForeignKey(User, related_name='enrollments', on_delete=models.CASCADE)
