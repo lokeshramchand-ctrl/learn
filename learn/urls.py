@@ -1,20 +1,14 @@
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path, include  # Fixed import of 'include'
 from accounts.views import RegisterView, LoginView
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from courses import urls as courses_urls  # Correct the import alias for courses app
 from courses.views import CourseCreateView
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
-    path('api/', include('course.urls')),  # Include course app's URLs
+    path('api/', include(courses_urls)),  # Corrected to include courses app's URLs
+    path('create/', CourseCreateView.as_view(), name='course_create'),
 
-    # JWT token views
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Get JWT tokens
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refresh JWT tokens
 ]

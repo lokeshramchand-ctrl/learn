@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from learn import settings
+
 # Course Model
 class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    instructor = models.ForeignKey(User, related_name='courses', on_delete=models.CASCADE)
+    instructor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='courses', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -29,7 +31,7 @@ class Module(models.Model):
         return self.title
 # Enrollment Model
 class Enrollment(models.Model):
-    user = models.ForeignKey(User, related_name='enrollments', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='enrollments', on_delete=models.CASCADE)
     course = models.ForeignKey(Course, related_name='enrollments', on_delete=models.CASCADE)
     enrollment_date = models.DateTimeField(auto_now_add=True)
 
@@ -48,7 +50,7 @@ class Assignment(models.Model):
 
 # Submission Model
 class Submission(models.Model):
-    user = models.ForeignKey(User, related_name='submissions', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='submissions', on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, related_name='submissions', on_delete=models.CASCADE)
     submission_file = models.FileField(upload_to='submissions/%Y/%m/%d/')
     grade = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
