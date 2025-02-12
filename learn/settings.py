@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -110,5 +108,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "127.0.0.1"  
+    "https://127.0.0.1//"  
 ]
