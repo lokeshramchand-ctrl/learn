@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'courses',
+    'corsheaders',
     'django.contrib.admin',
     'rest_framework.authtoken',
     'django.contrib.auth',
@@ -108,5 +109,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "https://127.0.0.1//"  
+    "http://localhost:5173",
 ]
